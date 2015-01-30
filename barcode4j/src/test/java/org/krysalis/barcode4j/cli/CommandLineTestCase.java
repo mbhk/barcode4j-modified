@@ -18,6 +18,7 @@ package org.krysalis.barcode4j.cli;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
+import java.net.URL;
 
 import org.apache.avalon.framework.ExceptionUtil;
 import org.krysalis.barcode4j.AbstractBarcodeTestCase;
@@ -135,7 +136,7 @@ public class CommandLineTestCase extends AbstractBarcodeTestCase {
     }
 
     public void testValidConfigFile() throws Exception {
-        File cfgFile = new File(getBaseDir(), "src/test/xml/good-cfg.xml");
+        File cfgFile = new File(getClass().getResource("/xml/good-cfg.xml").toURI());
         final String[] args = {"-c", cfgFile.getAbsolutePath(),
             "9771422985503+00006"};
         callCLI(args);
@@ -143,7 +144,7 @@ public class CommandLineTestCase extends AbstractBarcodeTestCase {
     }
 
     public void testBadConfigFile() throws Exception {
-        File cfgFile = new File(getBaseDir(), "src/test/xml/bad-cfg.xml");
+        File cfgFile = new File(getClass().getResource("/xml/bad-cfg.xml").toURI());
         final String[] args = {"-c", cfgFile.getAbsolutePath(),
             "9771422985503+00006"};
         callCLI(args);
