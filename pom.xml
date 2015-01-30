@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.sf.barcode4j</groupId>
+    <artifactId>barcode4j-parent</artifactId>
+    <version>2.1.0</version>
+
+    <name>barcode4j-parent</name>
+    <description>barcode4j: Parent Aggregator</description>
+
+    <packaging>pom</packaging>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:${barcode4j.scm.connection}</connection>
+        <developerConnection>scm:git:${barcode4j.scm.connection}</developerConnection>
+        <url>${barcode4j.scm.url}</url>
+    </scm>
+
+    <properties>
+        <barcode4j.scm.url>https://github.com/mbhk/barcode4j</barcode4j.scm.url>
+        <barcode4j.scm.connection>git@github.com:mbhk/barcode4j.git</barcode4j.scm.connection>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+        <module>barcode4j</module>
+    </modules>
+</project>
