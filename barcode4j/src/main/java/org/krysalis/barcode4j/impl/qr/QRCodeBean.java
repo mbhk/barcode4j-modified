@@ -30,6 +30,7 @@ import org.krysalis.barcode4j.tools.ECIUtil;
 import org.krysalis.barcode4j.tools.UnitConv;
 
 import com.google.zxing.WriterException;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.google.zxing.qrcode.encoder.ByteMatrix;
 import com.google.zxing.qrcode.encoder.Encoder;
 import com.google.zxing.qrcode.encoder.QRCode;
@@ -165,11 +166,11 @@ public class QRCodeBean extends AbstractBarcodeBean {
 
     /** {@inheritDoc} */
     public BarcodeDimension calcDimensions(String msg) {
-        QRCode code = new QRCode();
+        QRCode code;
         try {
-            Encoder.encode(msg,
+            code = Encoder.encode(msg,
                     QRLogicImpl.getZXingErrorLevel(errorCorrectionLevel),
-                    QRLogicImpl.createHints(encoding), code);
+                    QRLogicImpl.createHints(encoding));
         } catch (WriterException e) {
             throw new RuntimeException(e.getMessage());
         }

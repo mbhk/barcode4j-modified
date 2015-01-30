@@ -19,7 +19,8 @@
 package org.krysalis.barcode4j.impl.qr;
 
 import java.awt.Dimension;
-import java.util.Hashtable;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.krysalis.barcode4j.TwoDimBarcodeLogicHandler;
 
@@ -54,11 +55,11 @@ public class QRLogicImpl implements QRConstants {
         //TODO ZXing doesn't allow to set minSize/maxSize through its API
 
         ErrorCorrectionLevel zxingErrLevel = getZXingErrorLevel(errorCorrectionLevel);
-        Hashtable hints = createHints(encoding);
+        Map hints = createHints(encoding);
 
-        QRCode code = new QRCode();
+        QRCode code = null;
         try {
-            Encoder.encode(msg, zxingErrLevel, hints, code);
+            code = Encoder.encode(msg, zxingErrLevel, hints);
         } catch (WriterException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
@@ -70,10 +71,10 @@ public class QRLogicImpl implements QRConstants {
         logic.endBarcode();
     }
 
-    static Hashtable createHints(String encoding) {
-        Hashtable hints = null;
+    static Map createHints(String encoding) {
+        Map hints = null;
         if (!"ISO-8859-1".equals(encoding)) {
-            hints = new Hashtable();
+            hints = new HashMap();
             hints.put(EncodeHintType.CHARACTER_SET, encoding);
         }
         return hints;
