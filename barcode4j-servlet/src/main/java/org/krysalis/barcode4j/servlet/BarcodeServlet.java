@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 
 import org.krysalis.barcode4j.BarcodeGenerator;
@@ -36,9 +37,11 @@ import org.krysalis.barcode4j.output.svg.SVGCanvasProvider;
 import org.krysalis.barcode4j.tools.MimeTypes;
 
 import org.apache.avalon.framework.configuration.Configuration;
+import org.apache.avalon.framework.configuration.ConfigurationException;
 import org.apache.avalon.framework.configuration.DefaultConfiguration;
 import org.apache.avalon.framework.logger.ConsoleLogger;
 import org.apache.avalon.framework.logger.Logger;
+import org.krysalis.barcode4j.BarcodeException;
 
 /**
  * Simple barcode servlet.
@@ -77,11 +80,9 @@ public class BarcodeServlet extends HttpServlet {
     public static final String BARCODE_HUMAN_READABLE_PATTERN = "hrpattern";
 
 
-    private transient Logger log = new ConsoleLogger(ConsoleLogger.LEVEL_INFO);
+    private final transient Logger log = new ConsoleLogger(ConsoleLogger.LEVEL_INFO);
 
-    /**
-     * @see javax.servlet.http.HttpServlet#doGet(HttpServletRequest, HttpServletResponse)
-     */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
                 throws ServletException, IOException {
 
@@ -149,12 +150,21 @@ public class BarcodeServlet extends HttpServlet {
             response.setContentLength(bout.size());
             response.getOutputStream().write(bout.toByteArray());
             response.getOutputStream().flush();
-        } catch (Exception e) {
+        } catch (ConfigurationException e) {
             log.error("Error while generating barcode", e);
             throw new ServletException(e);
-        } catch (Throwable t) {
-            log.error("Error while generating barcode", t);
-            throw new ServletException(t);
+        } catch (BarcodeException e) {
+            log.error("Error while generating barcode", e);
+            throw new ServletException(e);
+        } catch (TransformerException e) {
+            log.error("Error while generating barcode", e);
+            throw new ServletException(e);
+        } catch (IOException e) {
+            log.error("Error while generating barcode", e);
+            throw new ServletException(e);
+        } catch (IllegalArgumentException e) {
+            log.error("Error while generating barcode", e);
+            throw new ServletException(e);
         }
     }
 
