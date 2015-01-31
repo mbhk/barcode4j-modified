@@ -7,10 +7,10 @@
         <version>3.0-SNAPSHOT</version>
     </parent>
     <artifactId>barcode4j-servlet</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     
-    <name>barcode4j</name>
-    <description>barcode4j core library</description>
+    <name>barcode4j-servlet</name>
+    <description>barcode4j servlet</description>
     
     <dependencies>
         <dependency>
