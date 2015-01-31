@@ -95,6 +95,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#debug(String)
      */
+    @Override
     public void debug(String msg) {
         debug(msg, null);
     }
@@ -102,6 +103,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#debug(String, Throwable)
      */
+    @Override
     public void debug(String msg, Throwable t) {
         logMessage(msg, t, LEVEL_DEBUG);
     }
@@ -109,6 +111,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#isDebugEnabled()
      */
+    @Override
     public boolean isDebugEnabled() {
         return (logLevel <= LEVEL_DEBUG);
     }
@@ -116,6 +119,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#info(String)
      */
+    @Override
     public void info(String msg) {
         info(msg, null);
     }
@@ -123,6 +127,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#info(String, Throwable)
      */
+    @Override
     public void info(String msg, Throwable t) {
         logMessage(msg, t, LEVEL_INFO);
     }
@@ -130,6 +135,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#isInfoEnabled()
      */
+    @Override
     public boolean isInfoEnabled() {
         return (logLevel <= LEVEL_INFO);
     }
@@ -137,6 +143,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#warn(String)
      */
+    @Override
     public void warn(String msg) {
         warn(msg, null);
     }
@@ -144,6 +151,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#warn(String, Throwable)
      */
+    @Override
     public void warn(String msg, Throwable t) {
         logMessage(msg, t, LEVEL_WARN);
     }
@@ -151,6 +159,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#isWarnEnabled()
      */
+    @Override
     public boolean isWarnEnabled() {
         return (logLevel <= LEVEL_WARN);
     }
@@ -158,6 +167,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#error(String)
      */
+    @Override
     public void error(String msg) {
         error(msg, null);
     }
@@ -165,6 +175,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#error(String, Throwable)
      */
+    @Override
     public void error(String msg, Throwable t) {
         logMessage(msg, t, LEVEL_ERROR);
     }
@@ -172,6 +183,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#isErrorEnabled()
      */
+    @Override
     public boolean isErrorEnabled() {
         return (logLevel <= LEVEL_ERROR);
     }
@@ -179,6 +191,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#fatalError(String)
      */
+    @Override
     public void fatalError(String msg) {
         fatalError(msg, null);
     }
@@ -186,6 +199,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#fatalError(String, Throwable)
      */
+    @Override
     public void fatalError(String msg, Throwable t) {
         logMessage(msg, t, LEVEL_FATAL);
     }
@@ -193,6 +207,7 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#isFatalErrorEnabled()
      */
+    @Override
     public boolean isFatalErrorEnabled() {
         return (logLevel <= LEVEL_FATAL);
     }
@@ -200,8 +215,8 @@ public class AdvancedConsoleLogger implements Logger {
     /**
      * @see org.apache.avalon.framework.logger.Logger#getChildLogger(String)
      */
+    @Override
     public Logger getChildLogger(String name) {
         return this;
     }
-
 }
