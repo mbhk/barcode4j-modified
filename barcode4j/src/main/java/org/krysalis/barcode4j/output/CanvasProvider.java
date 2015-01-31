@@ -29,24 +29,28 @@ public interface CanvasProvider {
 
     /**
      * Sets the dimensions of the barcode.
+     *
      * @param dim the dimensions of the barcode
      */
     void establishDimensions(BarcodeDimension dim);
 
     /**
      * Returns the barcode dimensions once established.
+     *
      * @return the barcode dimensions
      */
     BarcodeDimension getDimensions();
 
     /**
      * Returns the orientation of the barcode.
+     *
      * @return the orientation (0, 90, 180 or 270)
      */
     int getOrientation();
     
     /**
      * Paints a filled rectangle.
+     *
      * @param x x coordinate of the upper left corner
      * @param y y coordinate of the upper left corner
      * @param w the width
@@ -56,6 +60,7 @@ public interface CanvasProvider {
     
     /**
      * Draws justified text.
+     *
      * @param text the text to draw
      * @param x1 the left boundary
      * @param x2 the right boundary
@@ -68,6 +73,7 @@ public interface CanvasProvider {
             
     /**
      * Draws centered text.
+     *
      * @param text the text to draw
      * @param x1 the left boundary
      * @param x2 the right boundary
@@ -80,6 +86,7 @@ public interface CanvasProvider {
 
     /**
      * Draws text.
+     *
      * @param text the text to draw
      * @param x1 the left boundary
      * @param x2 the right boundary
@@ -90,5 +97,4 @@ public interface CanvasProvider {
      */
     void deviceText(String text, double x1, double x2, double y1, 
             String fontName, double fontSize, TextAlignment textAlign);
-
 }

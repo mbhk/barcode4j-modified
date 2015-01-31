@@ -48,6 +48,7 @@ public class BitmapCanvasProvider extends AbstractCanvasProvider {
      * @param resolution the desired image resolution (dots per inch)
      * @param imageType the desired image type (Values: BufferedImage.TYPE_*)
      * @param antiAlias true if anti-aliasing should be enabled
+     * @param orientation the orientation of the barcode
      */
     public BitmapCanvasProvider(OutputStream out, String mime, 
                     int resolution, int imageType, boolean antiAlias, int orientation) {
@@ -64,6 +65,7 @@ public class BitmapCanvasProvider extends AbstractCanvasProvider {
      * @param resolution the desired image resolution (dots per inch)
      * @param imageType the desired image type (Values: BufferedImage.TYPE_*)
      * @param antiAlias true if anti-aliasing should be enabled
+     * @param orientation the orientation of the barcode
      */
     public BitmapCanvasProvider(int resolution, int imageType, boolean antiAlias, 
                     int orientation) {
@@ -91,7 +93,7 @@ public class BitmapCanvasProvider extends AbstractCanvasProvider {
         return this.image;
     }
 
-    /** {@inheritDoc} */
+    @Override
     public void establishDimensions(BarcodeDimension dim) {
         super.establishDimensions(dim);
         this.image = BitmapBuilder.prepareImage(dim, getOrientation(),
@@ -102,12 +104,12 @@ public class BitmapCanvasProvider extends AbstractCanvasProvider {
         this.delegate.establishDimensions(dim);
     }
 
-    /** {@inheritDoc} */
+    @Override
     public void deviceFillRect(double x, double y, double w, double h) {
         this.delegate.deviceFillRect(x, y, w, h);
     }
 
-    /** {@inheritDoc} */
+    @Override
     public void deviceText(String text,
             double x1, double x2, double y1,
             String fontName, double fontSize, TextAlignment textAlign) {

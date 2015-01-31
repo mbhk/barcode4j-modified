@@ -36,6 +36,7 @@ public abstract class AbstractXMLGeneratingCanvasProvider
     
     /**
      * Returns the DecimalFormat instance to use internally to format numbers.
+     *
      * @return a DecimalFormat instance
      */
     protected DecimalFormat getDecimalFormat() {
@@ -49,11 +50,11 @@ public abstract class AbstractXMLGeneratingCanvasProvider
 
     /**
      * Formats a value and adds the unit specifier at the end.
+     *
      * @param value the value to format
      * @return the formatted value
      */
     protected String addUnit(double value) {
         return getDecimalFormat().format(value) + "mm"; //was mm
     }
-
 }

@@ -20,7 +20,9 @@ import org.krysalis.barcode4j.TextAlignment;
 
 /**
  * This class is used by barcode rendering classes that paint a barcode using 
- * a coordinate system. The class delegates the call to a CanvasProvider and
+ * a coordinate system.
+ *
+ * The class delegates the call to a CanvasProvider and
  * provides some convenience methods.
  * 
  * @author Jeremias Maerki
@@ -28,10 +30,11 @@ import org.krysalis.barcode4j.TextAlignment;
  */
 public class Canvas {
 
-    private CanvasProvider canvasImp;
+    private final CanvasProvider canvasImp;
 
     /**
-     * Main constructor
+     * Main constructor.
+     *
      * @param canvasImp the canvas provider to use
      */
     public Canvas(CanvasProvider canvasImp) {
@@ -40,6 +43,7 @@ public class Canvas {
 
     /**
      * Returns the canvas provider in use.
+     *
      * @return the canvas provider
      */
     public CanvasProvider getCanvasImp() {
@@ -48,6 +52,7 @@ public class Canvas {
 
     /**
      * Sets the dimensions of the barcode.
+     *
      * @param dim the barcode dimensions
      */
     public void establishDimensions(BarcodeDimension dim) {
@@ -63,6 +68,7 @@ public class Canvas {
 
     /**
      * Draws a rectangle.
+     *
      * @param x1 x coordinate of the upper left corner
      * @param y1 y coordinate of the upper left corner
      * @param x2 x coordinate of the lower right corner
@@ -74,6 +80,7 @@ public class Canvas {
 
     /**
      * Draws a rectangle
+     *
      * @param x x coordinate of the upper left corner
      * @param y y coordinate of the upper left corner
      * @param w the width
@@ -85,6 +92,7 @@ public class Canvas {
 
     /**
      * Draws a centered character.
+     *
      * @param ch the character
      * @param x1 the left boundary
      * @param x2 the right boundary
@@ -101,6 +109,7 @@ public class Canvas {
 
     /**
      * Draws justified text.
+     *
      * @param text the text to draw
      * @param x1 the left boundary
      * @param x2 the right boundary
@@ -109,6 +118,7 @@ public class Canvas {
      * @param fontSize the size of the font
      * @deprecated Use {@link #drawText(String, double, double, double, String, double, TextAlignment)} instead.
      */
+    @Deprecated
     public void drawJustifiedText(String text, double x1, double x2, double y1, 
                 String fontName, double fontSize) {
         drawText(text, x1, x2, y1, fontName, fontSize, TextAlignment.TA_JUSTIFY);
@@ -116,6 +126,7 @@ public class Canvas {
 
     /**
      * Draws centered text.
+     *
      * @param text the text to draw
      * @param x1 the left boundary
      * @param x2 the right boundary
@@ -124,6 +135,7 @@ public class Canvas {
      * @param fontSize the size of the font
      * @deprecated Use {@link #drawText(String, double, double, double, String, double, TextAlignment)} instead.
      */
+    @Deprecated
     public void drawCenteredText(String text, double x1, double x2, double y1, 
                 String fontName, double fontSize) {
         drawText(text, x1, x2, y1, fontName, fontSize, TextAlignment.TA_CENTER);
@@ -131,6 +143,7 @@ public class Canvas {
 
     /**
      * Draws text.
+     *
      * @param text the text to draw
      * @param x1 the left boundary
      * @param x2 the right boundary
@@ -145,5 +158,4 @@ public class Canvas {
                 x1, x2, y1, 
                 fontName, fontSize, textAlign);
     }
-
 }

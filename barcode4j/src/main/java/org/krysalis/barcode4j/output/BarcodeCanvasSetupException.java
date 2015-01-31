@@ -24,6 +24,7 @@ import org.krysalis.barcode4j.BarcodeException;
  * @version $Id$
  */
 public class BarcodeCanvasSetupException extends BarcodeException {
+    private static final long serialVersionUID = 8862133851109269908L;
 
     /**
      * Constructor for BarcodeCanvasSetupException.

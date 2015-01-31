@@ -56,6 +56,7 @@ public class Java2DCanvasProvider extends AbstractCanvasProvider {
      * RenderingHints.VALUE_FRACTIONALMETRICS_ON);
      * </code>
      * @param g2d Graphics2D object to paint on
+     * @param orientation the orientation of the barcode
      */
     public Java2DCanvasProvider(Graphics2D g2d, int orientation) {
         super(orientation);
@@ -66,7 +67,7 @@ public class Java2DCanvasProvider extends AbstractCanvasProvider {
      * Sets the Graphics2D instance to paint on
      * @param g2d the Graphics2D instance
      */
-    public void setGraphics2D(Graphics2D g2d) {
+    final public void setGraphics2D(Graphics2D g2d) {
         this.g2d = g2d;
     }
 
@@ -78,7 +79,7 @@ public class Java2DCanvasProvider extends AbstractCanvasProvider {
         return this.g2d;
     }
     
-    /** {@inheritDoc} */
+    @Override
     public void establishDimensions(BarcodeDimension dim) {
         super.establishDimensions(dim);
         int orientation = BarcodeDimension.normalizeOrientation(getOrientation());
@@ -103,17 +104,16 @@ public class Java2DCanvasProvider extends AbstractCanvasProvider {
         }
     }
 
-    /** {@inheritDoc} */
+    @Override
     public void deviceFillRect(double x, double y, double w, double h) {
         g2d.fill(new Rectangle2D.Double(x, y, w, h));
     }
 
-    /** {@inheritDoc} */
     public void deviceDrawRect(double x, double y, double w, double h) {
         g2d.draw(new Rectangle2D.Double(x, y, w, h));
     }
 
-    /** {@inheritDoc} */
+    @Override
     public void deviceText(
             String text,
             double x1,

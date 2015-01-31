@@ -15,6 +15,7 @@
  */
 package org.krysalis.barcode4j.output.bitmap;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ import java.util.Set;
  */
 public class BitmapEncoderRegistry {
 
-    private static Set encoders = new java.util.TreeSet();
+    private static final Set encoders = new java.util.TreeSet();
 
     static {
         register(org.krysalis.barcode4j.output.bitmap.ImageIOBitmapEncoder.class.getName(),
@@ -41,15 +42,15 @@ public class BitmapEncoderRegistry {
     }
 
     private static class Entry implements Comparable {
-        private BitmapEncoder encoder;
-        private int priority;
+        private final BitmapEncoder encoder;
+        private final int priority;
 
         public Entry(BitmapEncoder encoder, int priority) {
             this.encoder = encoder;
             this.priority = priority;
         }
 
-        /** {@inheritDoc} */
+        @Override
         public int compareTo(Object o) {
             Entry e = (Entry)o;
             return e.priority - this.priority; //highest priority first
@@ -63,7 +64,11 @@ public class BitmapEncoderRegistry {
             Class clazz = Class.forName(classname);
             BitmapEncoder encoder = (BitmapEncoder)clazz.newInstance();
             encoders.add(new Entry(encoder, priority));
-        } catch (Exception e) {
+        } catch (ClassNotFoundException e) {
+            failed = true;
+        } catch (InstantiationException e) {
+            failed = true;
+        } catch (IllegalAccessException e) {
             failed = true;
         } catch (LinkageError le) {
             failed = true; //NoClassDefFoundError for example
@@ -73,8 +78,6 @@ public class BitmapEncoderRegistry {
                 throw new IllegalArgumentException(
                     "The implementation being registered is unavailable or "
                     + "cannot be instantiated: " + classname);
-            } else {
-                return;
             }
         }
     }
@@ -99,8 +102,8 @@ public class BitmapEncoderRegistry {
      */
     public static boolean supports(BitmapEncoder encoder, String mime) {
         String[] mimes = encoder.getSupportedMIMETypes();
-        for (int i = 0; i < mimes.length; i++) {
-            if (mimes[i].equals(mime)) {
+        for (String mime1 : mimes) {
+            if (mime1.equals(mime)) {
                 return true;
             }
         }
@@ -156,11 +159,8 @@ public class BitmapEncoderRegistry {
             Entry entry = (Entry)i.next();
             BitmapEncoder encoder = entry.encoder;
             String[] s = encoder.getSupportedMIMETypes();
-            for (int j = 0; j < s.length; j++) {
-                mimes.add(s[j]);
-            }
+            mimes.addAll(Arrays.asList(s));
         }
         return mimes;
     }
-
 }

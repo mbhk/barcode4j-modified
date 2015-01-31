@@ -35,8 +35,10 @@ public abstract class AbstractSVGGeneratingCanvasProvider
     
     /**
      * Creates a new AbstractSVGCanvasProvider.
+     *
      * @param useNamespace Controls whether namespaces should be used
      * @param namespacePrefix the namespace prefix to use, null for no prefix
+     * @param orientation the orientation of the barcode
      * @throws BarcodeCanvasSetupException if setting up the provider fails
      */
     public AbstractSVGGeneratingCanvasProvider(boolean useNamespace, String namespacePrefix, 
@@ -51,7 +53,9 @@ public abstract class AbstractSVGGeneratingCanvasProvider
     
     /**
      * Creates a new AbstractSVGCanvasProvider with namespaces enabled.
+     *
      * @param namespacePrefix the namespace prefix to use, null for no prefix
+     * @param orientation the orientation of the barcode
      * @throws BarcodeCanvasSetupException if setting up the provider fails
      */
     public AbstractSVGGeneratingCanvasProvider(String namespacePrefix, int orientation) 
@@ -61,7 +65,9 @@ public abstract class AbstractSVGGeneratingCanvasProvider
 
     /**
      * Creates a new AbstractSVGCanvasProvider.
+     *
      * @param useNamespace Controls whether namespaces should be used
+     * @param orientation the orientation of the barcode
      * @throws BarcodeCanvasSetupException if setting up the provider fails
      */
     public AbstractSVGGeneratingCanvasProvider(boolean useNamespace, int orientation) 
@@ -72,6 +78,8 @@ public abstract class AbstractSVGGeneratingCanvasProvider
     /**
      * Creates a new AbstractSVGCanvasProvider with default settings (with 
      * namespaces, but without namespace prefix).
+     *
+     * @param orientation the orientation of the barcode
      * @throws BarcodeCanvasSetupException if setting up the provider fails
      */
     public AbstractSVGGeneratingCanvasProvider(int orientation) 
@@ -81,6 +89,7 @@ public abstract class AbstractSVGGeneratingCanvasProvider
 
     /**
      * Indicates whether namespaces are enabled.
+     *
      * @return true if namespaces are enabled
      */
     public boolean isNamespaceEnabled() {
@@ -89,6 +98,7 @@ public abstract class AbstractSVGGeneratingCanvasProvider
     
     /**
      * Returns the namespace prefix
+     *
      * @return the namespace prefix (may be null)
      */
     public String getNamespacePrefix() {
@@ -98,6 +108,7 @@ public abstract class AbstractSVGGeneratingCanvasProvider
     /**
      * Constructs a fully qualified element name based on the namespace 
      * settings.
+     *
      * @param localName the local name
      * @return the fully qualified name
      */

@@ -28,7 +28,6 @@ import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.metadata.IIOMetadataNode;
 import javax.imageio.stream.ImageOutputStream;
 
-import org.krysalis.barcode4j.tools.DebugUtil;
 import org.krysalis.barcode4j.tools.MimeTypes;
 import org.krysalis.barcode4j.tools.UnitConv;
 
@@ -49,12 +48,12 @@ public class ImageIOBitmapEncoder implements BitmapEncoder {
         Class.forName("javax.imageio.ImageIO");
     }
 
-    /** {@inheritDoc} */
+    @Override
     public String[] getSupportedMIMETypes() {
         return ImageIO.getWriterMIMETypes();
     }
 
-    /** {@inheritDoc} */
+    @Override
     public void encode(BufferedImage image, OutputStream out,
                 String mime, int resolution) throws IOException {
 
@@ -176,13 +175,4 @@ public class ImageIOBitmapEncoder implements BitmapEncoder {
             throw new IOException("Metadata is read-only. Cannot modify");
         }
     }
-
-    private void dumpMetadata(IIOMetadata iiometa) {
-        String[] metanames = iiometa.getMetadataFormatNames();
-        for (int j = 0; j < metanames.length; j++) {
-            System.out.println("--->" + metanames[j]);
-            DebugUtil.dumpNode(iiometa.getAsTree(metanames[j]));
-        }
-    }
-
 }

@@ -41,6 +41,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
 
     /**
      * Creates a new SVGCanvasProvider with namespaces enabled.
+     *
      * @param namespacePrefix the namespace prefix to use, null for no prefix
      * @param orientation the barcode orientation (0, 90, 180, 270)
      * @throws BarcodeCanvasSetupException if setting up the provider fails
@@ -52,6 +53,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
 
     /**
      * Creates a new SVGCanvasProvider with namespaces enabled.
+     *
      * @param domImpl DOMImplementation to use (JAXP default is used when
      *     this is null)
      * @param namespacePrefix the namespace prefix to use, null for no prefix
@@ -68,6 +70,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
 
     /**
      * Creates a new SVGCanvasProvider.
+     *
      * @param useNamespace Controls whether namespaces should be used
      * @param orientation the barcode orientation (0, 90, 180, 270)
      * @throws BarcodeCanvasSetupException if setting up the provider fails
@@ -79,6 +82,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
 
     /**
      * Creates a new SVGCanvasProvider.
+     *
      * @param domImpl DOMImplementation to use (JAXP default is used when
      *     this is null)
      * @param useNamespace Controls whether namespaces should be used
@@ -95,6 +99,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
     /**
      * Creates a new SVGCanvasProvider with default settings (with namespaces,
      * but without namespace prefix).
+     *
      * @param orientation the barcode orientation (0, 90, 180, 270)
      * @throws BarcodeCanvasSetupException if setting up the provider fails
      */
@@ -136,7 +141,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
             }
 
             if (isNamespaceEnabled()) {
-                Document doc = this.domImpl.createDocument(
+                Document document = this.domImpl.createDocument(
                         SVG_NAMESPACE, getQualifiedName("svg"), null);
                 /*
                 if (getNamespacePrefix() == null) {
@@ -146,7 +151,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
                     doc.getDocumentElement().setAttribute(
                             "xmlns:" + getNamespacePrefix(), SVG_NAMESPACE);
                 }*/
-                return doc;
+                return document;
             } else {
                 return this.domImpl.createDocument(null, "svg", null);
             }
@@ -157,6 +162,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
 
     /**
      * Returns the DOM document containing the SVG barcode.
+     *
      * @return the DOM document
      */
     public org.w3c.dom.Document getDOM() {
@@ -165,6 +171,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
 
     /**
      * Returns the DOM fragment containing the SVG barcode.
+     *
      * @return the DOM fragment
      */
     public org.w3c.dom.DocumentFragment getDOMFragment() {
@@ -173,7 +180,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
         return frag;
     }
 
-    /** {@inheritDoc} */
+    @Override
     public void establishDimensions(BarcodeDimension dim) {
         super.establishDimensions(dim);
         int orientation = BarcodeDimension.normalizeOrientation(getOrientation());
@@ -202,7 +209,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
         }
     }
 
-    /** {@inheritDoc} */
+    @Override
     public void deviceFillRect(double x, double y, double w, double h) {
         Element el = createElement("rect");
         el.setAttribute("x", getDecimalFormat().format(x));
@@ -212,7 +219,7 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
         detailGroup.appendChild(el);
     }
 
-    /** {@inheritDoc} */
+    @Override
     public void deviceText(String text, double x1, double x2, double y1,
                             String fontName, double fontSize, TextAlignment textAlign) {
         Element el = createElement("text");
@@ -238,7 +245,5 @@ public class SVGCanvasProvider extends AbstractSVGGeneratingCanvasProvider {
         }
         el.appendChild(doc.createTextNode(text));
         detailGroup.appendChild(el);
-
     }
-
 }
