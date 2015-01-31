@@ -40,6 +40,7 @@ import org.apache.avalon.framework.configuration.DefaultConfiguration;
 import org.apache.avalon.framework.configuration.DefaultConfigurationBuilder;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
+import org.xml.sax.SAXException;
 
 /**
  * Ant task for Barcode4J.
@@ -76,6 +77,7 @@ public class BarcodeTask extends Task {
      * completion.
      * @throws BuildException if an error occurs
      */
+    @Override
     public void execute() throws BuildException {
 
         if (message == null || message.length() == 0) {
@@ -139,13 +141,12 @@ public class BarcodeTask extends Task {
     }
 
     private Configuration getConfiguration() {
+        Configuration res = null;
         if (symbol != null) {
             DefaultConfiguration cfg = new DefaultConfiguration("cfg");
-            DefaultConfiguration child = new DefaultConfiguration(symbol);
-            cfg.addChild(child);
-            return cfg;
-        }
-        if (configurationFile != null) {
+            cfg.addChild(new DefaultConfiguration(symbol));
+            res = cfg;
+        } else if (configurationFile != null) {
             try {
                 if (!configurationFile.exists() || !configurationFile.isFile()) {
                     throw new BuildException("Config file not found: " + configurationFile);
@@ -153,12 +154,16 @@ public class BarcodeTask extends Task {
                 log("Using configuration: " + configurationFile);
 
                 DefaultConfigurationBuilder builder = new DefaultConfigurationBuilder();
-                return builder.buildFromFile(configurationFile);
-            } catch (Exception e) {
-                throw new BuildException("Error reading configuration file: " + e.getMessage());
+                res = builder.buildFromFile(configurationFile);
+            } catch (SAXException e) {
+                throw new BuildException("Error reading configuration file", e);
+            } catch (IOException e) {
+                throw new BuildException("Error reading configuration file", e);
+            } catch (ConfigurationException e) {
+                throw new BuildException("Error reading configuration file", e);
             }
         }
-        return new DefaultConfiguration("cfg");
+        return res == null ? new DefaultConfiguration("cfg") : res;
     }
 
     /**
