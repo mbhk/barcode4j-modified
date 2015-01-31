@@ -198,5 +198,6 @@
         <module>barcode4j</module>
         <module>barcode4j-ant-task</module>
         <module>barcode4j-cli</module>
+        <module>barcode4j-servlet</module>
     </modules>
 </project>
