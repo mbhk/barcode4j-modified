@@ -135,7 +135,7 @@ public class CodabarBean extends AbstractBarcodeBean {
             int narrow = 0;
             int wide = 0;
             for (int i = 0; i < 7; i++) {
-                final byte width = CodabarLogicImpl.CHARSET[idx][i];
+                final byte width = CodabarLogicImpl.getCharWidth(idx, i);
                 if (width == 0) {
                     narrow++;
                 } else {

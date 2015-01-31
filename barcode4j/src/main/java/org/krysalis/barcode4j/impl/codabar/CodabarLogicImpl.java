@@ -34,7 +34,7 @@ public class CodabarLogicImpl {
                              '-', '$', ':', '/', '.', '+', '*'};
 
     /** Defines the Codabar character set. */
-    static final byte[][] CHARSET =
+    private static final byte[][] CHARSET =
                                             {{0, 0, 0, 0, 0, 1, 1},  //0
                                              {0, 0, 0, 0, 1, 1, 0},  //1
                                              {0, 0, 0, 1, 0, 0, 1},  //2
@@ -103,6 +103,10 @@ public class CodabarLogicImpl {
             }
         }
         return -1;
+    }
+    
+    static byte getCharWidth(int ix, int i) {
+        return CHARSET[ix][i];
     }
 
     /**

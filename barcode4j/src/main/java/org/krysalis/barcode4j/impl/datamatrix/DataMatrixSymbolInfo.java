@@ -27,7 +27,7 @@ import java.awt.Dimension;
  */
 public class DataMatrixSymbolInfo {
 
-    public static final DataMatrixSymbolInfo[] PROD_SYMBOLS = new DataMatrixSymbolInfo[] {
+    static final DataMatrixSymbolInfo[] PROD_SYMBOLS = new DataMatrixSymbolInfo[] {
         new DataMatrixSymbolInfo(false, 3, 5, 8, 8, 1),
         new DataMatrixSymbolInfo(false, 5, 7, 10, 10, 1),
         /*rect*/new DataMatrixSymbolInfo(true, 5, 7, 16, 6, 1),
