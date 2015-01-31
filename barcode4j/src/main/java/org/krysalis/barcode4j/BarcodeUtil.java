@@ -15,9 +15,6 @@
  */
 package org.krysalis.barcode4j;
 
-import org.krysalis.barcode4j.output.svg.SVGCanvasProvider;
-import org.w3c.dom.DocumentFragment;
-
 import org.apache.avalon.framework.configuration.Configuration;
 import org.apache.avalon.framework.configuration.ConfigurationException;
 import org.apache.avalon.framework.container.ContainerUtil;
@@ -35,7 +32,7 @@ public class BarcodeUtil {
 
     private static BarcodeUtil instance = null;
 
-    private BarcodeClassResolver classResolver = new DefaultBarcodeClassResolver();
+    private final BarcodeClassResolver classResolver = new DefaultBarcodeClassResolver();
 
 
     /**
@@ -137,6 +134,7 @@ public class BarcodeUtil {
 
     /**
      * Creates a BarcoderGenerator.
+     *
      * @param cfg Configuration object that specifies the barcode to produce.
      * @return the newly instantiated BarcodeGenerator
      * @throws BarcodeException if setting up a BarcodeGenerator fails
@@ -146,25 +144,4 @@ public class BarcodeUtil {
             throws ConfigurationException, BarcodeException {
         return createBarcodeGenerator(cfg, this.classResolver);
     }
-
-    /**
-     * Convenience method to create an SVG barocde as a DOM fragment.
-     * @param cfg Configuration object that specifies the barcode to produce.
-     * @param msg message to encode.
-     * @return the requested barcode as an DOM fragment (SVG format)
-     * @throws BarcodeException if setting up a BarcodeGenerator fails
-     * @throws ConfigurationException if something's wrong wth the configuration
-     */
-    public DocumentFragment generateSVGBarcode(Configuration cfg,
-                                               String msg)
-                    throws ConfigurationException, BarcodeException {
-        BarcodeGenerator gen = createBarcodeGenerator(cfg);
-        SVGCanvasProvider svg = new SVGCanvasProvider(false, 0);
-
-        //Create Barcode and render it to SVG
-        gen.generateBarcode(svg, msg);
-
-        return svg.getDOMFragment();
-    }
-
 }
