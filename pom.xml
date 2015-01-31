@@ -168,5 +168,6 @@
 
     <modules>
         <module>barcode4j</module>
+        <module>barcode4j-ant-task</module>
     </modules>
 </project>
