@@ -25,7 +25,10 @@ import java.util.regex.Pattern;
  */
 public class MessageUtil {
 
-    private static final Pattern unicodeCharPattern = Pattern.compile("(\\\\\\\\)|(\\\\u([\\dA-Fa-f]{0,4}))");
+    private static final Pattern UNESCAPE_UNICODE_PATTERN = Pattern.compile("(\\\\\\\\)|(\\\\u([\\dA-Fa-f]{0,4}))");
+
+    private MessageUtil() {
+    }
 
     /**
      * Un-escapes escaped Unicode characters in a message.
@@ -44,7 +47,7 @@ public class MessageUtil {
         StringBuilder res = new StringBuilder();
         int processedUntil = 0;
 
-        Matcher m = unicodeCharPattern.matcher(message);
+        Matcher m = UNESCAPE_UNICODE_PATTERN.matcher(message);
         while (m.find()) {
             res.append(message.substring(processedUntil, m.start()));
             if (m.group(1) != null) {
