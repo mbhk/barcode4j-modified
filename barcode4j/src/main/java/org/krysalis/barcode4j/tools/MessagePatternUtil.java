@@ -41,7 +41,7 @@ public class MessagePatternUtil {
      */
     public static String applyCustomMessagePattern(String msg, String pattern) {
 
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         // if there is no pattern then return the original message
         if ((pattern == null) || "".equals(pattern)
@@ -104,46 +104,33 @@ public class MessagePatternUtil {
     }
 
     /**
-     * Returns true if the imput character is placeholder
+     * Returns true if the imput character is placeholder.
+     *
      * @param c byte
      * @return boolean
      */
     private static boolean isPlaceholder(char c) {
-      boolean result = false;
-
-      char placeholderChar = '_';
-
-      result = (placeholderChar == c);
-
-      return result;
+      return '_' == c;
     }
 
     /**
-     * Returns true if the input parameter is escape character
+     * Returns true if the input parameter is escape character.
+     *
      * @param c char
      * @return boolean
      * @author Dimitar Vlasev
      */
     private static boolean isEscapeChar(char c) {
-        boolean result = false;
-
-        char escapeChar = '\\';
-
-        result = (c == escapeChar);
-
-        return result;
+        return '\\' == c;
     }
 
     /**
      * Returns true if the input character is deleteholder.
+     *
      * @param c the input character
      * @return true if the input character is a position to be deleted
      */
     private static boolean isDeleteholder(char c) {
-        boolean result = false;
-        char placeholderChar = '#';
-        result = (placeholderChar == c);
-        return result;
+        return '#' == c;
     }
-
 }

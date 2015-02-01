@@ -53,14 +53,15 @@ public class Base64InputStream extends InputStream {
 
     private Reader source;
 
-    private char[] quadBuffer = new char[4];
+    private final char[] quadBuffer;
 
-    private byte[] triple = new byte[3];
+    private final byte[] triple;
     private int tripleIndex = 4;
     private int tripleFilled;
 
     /**
      * Constructs a new instance.
+     *
      * @param source the Reader to read the Base64-encoded data from
      */
     public Base64InputStream(Reader source) {
@@ -68,9 +69,11 @@ public class Base64InputStream extends InputStream {
             throw new NullPointerException("source must not be null");
         }
         this.source = source;
+        this.triple = new byte[3];
+        this.quadBuffer = new char[4];
     }
 
-    /** {@inheritDoc} */
+    @Override
     public int read() throws IOException {
         checkOpen();
         if (tripleIndex >= tripleFilled) {
@@ -126,10 +129,9 @@ public class Base64InputStream extends InputStream {
         }
     }
 
-    /** {@inheritDoc} */
+    @Override
     public void close() throws IOException {
         this.source.close();
         this.source = null;
     }
-
 }

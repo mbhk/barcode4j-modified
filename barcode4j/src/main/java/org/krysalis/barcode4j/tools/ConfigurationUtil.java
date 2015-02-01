@@ -56,7 +56,7 @@ public class ConfigurationUtil {
             return document.getDocumentElement(); //Xalan-bug, doesn't work (2.4.1)
         } catch (Exception e) {
             //Alternative method
-            Node nd = null;
+            Node nd;
             for (int i = 0; i < document.getChildNodes().getLength(); i++) {
                 nd = document.getChildNodes().item(i);
                 if (nd.getNodeType() == Node.ELEMENT_NODE) {
@@ -128,5 +128,4 @@ public class ConfigurationUtil {
         msg = MessageUtil.unescapeUnicode(msg);
         return msg;
     }
-
 }
