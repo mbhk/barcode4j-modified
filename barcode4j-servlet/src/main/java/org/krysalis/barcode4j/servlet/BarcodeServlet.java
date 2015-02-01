@@ -186,9 +186,11 @@ public class BarcodeServlet extends HttpServlet {
      * Build an Avalon Configuration object from the request.
      * @param request the request to use
      * @return the newly built COnfiguration object
-     * @todo Change to bean API
      */
     protected Configuration buildCfg(HttpServletRequest request) {
+
+        // TODO Change to bean API
+
         DefaultConfiguration cfg = new DefaultConfiguration("barcode");
         //Get type
         String type = request.getParameter(BARCODE_TYPE);

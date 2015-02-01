@@ -23,10 +23,11 @@ import org.krysalis.barcode4j.ClassicBarcodeLogicHandler;
  * This class is an implementation of the Code39 barcode.
  *
  * @author Jeremias Maerki
- * @todo Add ASCII-7bit encoding table
  * @version $Id$
  */
 public class Code39LogicImpl {
+
+    // TODO Add ASCII-7bit encoding table
 
     private static final char[] CHARACTERS =
                         {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',

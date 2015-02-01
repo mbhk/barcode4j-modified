@@ -61,7 +61,6 @@ public class URLUtil {
      * Returns the data pointed at by a URL as a byte array.
      * @param url the URL
      * @return encoding text as a string
-     * @throws IOException if an I/O error occurs
      */
     public static String getDataEncoding(String url){
         int commaPos = url.indexOf(',');

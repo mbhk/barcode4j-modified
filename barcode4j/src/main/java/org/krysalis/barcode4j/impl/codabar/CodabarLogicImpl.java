@@ -23,10 +23,11 @@ import org.krysalis.barcode4j.ClassicBarcodeLogicHandler;
  * This class is an implementation of the Codabar barcode.
  *
  * @author Jeremias Maerki
- * @todo Complete the implementation (checksum, automatic start/stops chars...)
  * @version $Id$
  */
 public class CodabarLogicImpl {
+
+    // TODO Complete the implementation (checksum, automatic start/stops chars...)
 
     private static final char[] CHARACTERS =
                             {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
