@@ -59,9 +59,7 @@ public class MessageUtil {
             }
             processedUntil = m.end();
         }
-        if (processedUntil < message.length()) {
-            res.append(message.substring(processedUntil));
-        }
+        res.append(message.substring(processedUntil));
 
         return res.toString();
     }

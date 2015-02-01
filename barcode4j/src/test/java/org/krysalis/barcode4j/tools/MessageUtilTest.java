@@ -48,6 +48,12 @@ public class MessageUtilTest extends TestCase {
         msg = "1\\\\u001E";
         processed = MessageUtil.unescapeUnicode(msg);
         assertEquals("1\\u001E", processed);
+        
+        // test null message
+        assertNull("Call with NULL should be null", MessageUtil.unescapeUnicode(null));
+        
+        // test without escaping
+        assertEquals("Hallo Welt!", MessageUtil.unescapeUnicode("Hallo Welt!"));
     }
 
 }
