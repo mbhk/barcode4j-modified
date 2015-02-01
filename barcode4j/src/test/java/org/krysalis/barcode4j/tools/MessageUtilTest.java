@@ -37,7 +37,7 @@ public class MessageUtilTest extends TestCase {
         //Testing an unfinished Unicode escape sequence
         msg = "1\\u00\\x";
         try {
-            processed = MessageUtil.unescapeUnicode(msg);
+            MessageUtil.unescapeUnicode(msg);
             fail("Expected an IllegalArgumentException for an unfinished Unicode escape sequence");
         } catch (IllegalArgumentException e) {
             //expected
