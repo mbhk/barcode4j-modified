@@ -57,7 +57,15 @@ public class Length {
      * @param defaultUnit the default unit to assume
      */
     public Length(String text, String defaultUnit) {
-        parse(text, defaultUnit);
+        Builder b = new Builder();
+        try {
+            b.fromString(text);
+        } catch (Exception e) {
+            b.reset().withValue(text).withUnit(defaultUnit);
+        }
+        Length l = b.build();
+        this.unit = l.unit;
+        this.value = l.value;
     }
     
     /**
@@ -214,8 +222,8 @@ public class Length {
         private Double value = null;
         private String unit = null;
         private final Set<String> supportedUnits;
-        private static final Pattern UNIT_PATTERN = Pattern.compile("[\\s]*([a-zA-Z]+)$");
-        private static final Pattern VALUE_PATTERN = Pattern.compile("^(([\\d]+)|([\\d]?\\.[\\d]+))[\\s]*");
+        private static final Pattern UNIT_PATTERN = Pattern.compile("[\\s]*([a-zA-Z]+)[\\s]*.*$");
+        private static final Pattern VALUE_PATTERN = Pattern.compile("^(([\\d]?[\\.,][\\d]+)|([\\d]+))[\\s]*");
 
         public Builder() {
             supportedUnits = Length.getSupportedUnits();
@@ -253,19 +261,20 @@ public class Length {
             return new Length(value, unit);
         }
 
-        public void reset() {
+        public Builder reset() {
             this.unit = null;
             this.value = null;
+            return this;
         }
 
         private double parseValue(String value) {
-            return Double.parseDouble(value);
+            return Double.parseDouble(value.replaceAll(",", "."));
         }
 
         private String extractUnit(String valueWithUnit) {
             Matcher m = UNIT_PATTERN.matcher(valueWithUnit);
             if (m.find()) {
-                return m.group();
+                return m.group(1);
             } else {
                 throw new IllegalArgumentException("unit not found in " + valueWithUnit);
             }
@@ -274,7 +283,7 @@ public class Length {
         private String extractValue(String valueWithUnit) {
             Matcher m = VALUE_PATTERN.matcher(valueWithUnit);
             if (m.find()) {
-                return m.group();
+                return m.group(1);
             } else {
                 throw new IllegalArgumentException("value not found in " + valueWithUnit);
             }
