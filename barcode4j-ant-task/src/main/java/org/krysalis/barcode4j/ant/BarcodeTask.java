@@ -73,12 +73,15 @@ public class BarcodeTask extends Task {
     private String message;
 
     /**
-     * Handles the command line. The method calls the exit handler upon
+     * Handles the command line.
+     *
+     * The method calls the exit handler upon
      * completion.
+     *
      * @throws BuildException if an error occurs
      */
     @Override
-    public void execute() throws BuildException {
+    public void execute() {
 
         if (message == null || message.length() == 0) {
             throw new BuildException("No message");
@@ -168,7 +171,9 @@ public class BarcodeTask extends Task {
 
     /**
      * Sets the desired symbology.
+     *
      * @param symbol the symbology to set
+     *
      * @see <a href="http://barcode4j.sourceforge.net/latest/barcode-xml.html">barcode-xml</a>
      */
     public void setSymbol(String symbol) {
@@ -177,6 +182,7 @@ public class BarcodeTask extends Task {
 
     /**
      * Sets the configuration file to use for complex configuration.
+     *
      * @param configurationFile the configurationFile to set
      */
     public void setConfigurationFile(File configurationFile) {
@@ -185,6 +191,7 @@ public class BarcodeTask extends Task {
 
     /**
      * Sets the resolution (used when creating bitmap output).
+     *
      * @param dpi the dpi to set
      */
     public void setDpi(int dpi) {
@@ -193,7 +200,7 @@ public class BarcodeTask extends Task {
 
     /**
      * Sets the desired output format.
-     * <p>
+     *
      * A selection of valid output formats:
      * <ul>
      * <li>SVG: image/svg+xml, svg</li>
@@ -203,6 +210,7 @@ public class BarcodeTask extends Task {
      * <li>JPEG: image/jpeg, jpeg, jpg</li>
      * <li>GIF: image/gif, gif</li>
      * </ul>
+     *
      * @param format the format (a MIME type or a supported format identifier)
      */
     public void setFormat(String format) {
@@ -211,6 +219,7 @@ public class BarcodeTask extends Task {
 
     /**
      * Sets the target file.
+     *
      * @param output the output
      */
     public void setOutput(File output) {
@@ -218,8 +227,10 @@ public class BarcodeTask extends Task {
     }
 
     /**
-     * Controls whether to generate monochrome (black and white, 1 bit) images. Only applicable
-     * when generating bitmap formats.
+     * Controls whether to generate monochrome (black and white, 1 bit) images.
+     *
+     * Only applicable when generating bitmap formats.
+     *
      * @param bw true for monochrome images
      */
     public void setBw(boolean bw) {
@@ -228,6 +239,7 @@ public class BarcodeTask extends Task {
 
     /**
      * Sets the barcode message.
+     *
      * @param message the message
      */
     public void setMessage(String message) {
@@ -240,6 +252,7 @@ public class BarcodeTask extends Task {
 
     /**
      * Adds text to the current message.
+     *
      * @param text the text to add to the message
      */
     public void addText(String text) {
