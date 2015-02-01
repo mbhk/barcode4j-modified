@@ -54,6 +54,7 @@ public class DrawingUtil {
      * @param y1 the y coordinate of the font's baseline
      * @deprecated Use {@link #drawText(Canvas, AbstractBarcodeBean, String, double, double, double, TextAlignment)} instead.
      */
+    @Deprecated
     public static void drawJustifiedText(Canvas canvas, AbstractBarcodeBean bean,
                                     String text, 
                                     double x1, double x2, double y1) {
@@ -70,6 +71,7 @@ public class DrawingUtil {
      * @param y1 the y coordinate of the font's baseline
      * @deprecated Use {@link #drawText(Canvas, AbstractBarcodeBean, String, double, double, double, TextAlignment)} instead.
      */
+    @Deprecated
     public static void drawCenteredText(Canvas canvas, AbstractBarcodeBean bean, 
                                     String text, 
                                     double x1, double x2, double y1) {
