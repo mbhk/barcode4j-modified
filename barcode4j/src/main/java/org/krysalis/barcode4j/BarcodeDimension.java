@@ -178,23 +178,19 @@ public class BarcodeDimension {
 
     /** @return a bounding rectangle (including quiet zone if applicable) */
     public Rectangle2D getBoundingRect() {
-        Rectangle2D.Double r = new Rectangle2D.Double(
+        return new Rectangle2D.Double(
                 0, 0, getWidthPlusQuiet(), getHeightPlusQuiet());
-        return r;
     }
     
     /** @return a content rectangle (excluding quiet zone) */
     public Rectangle2D getContentRect() {
-        Rectangle2D.Double r = new Rectangle2D.Double(
+        return new Rectangle2D.Double(
                 getXOffset(), getYOffset(), getWidth(), getHeight());
-        return r;
     }
-    
-    /**
-     * @see java.lang.Object#toString()
-     */
+
+    @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer(super.toString());
+        StringBuilder sb = new StringBuilder(super.toString());
         sb.append("[width=");
         sb.append(getWidth());
         sb.append("(");
