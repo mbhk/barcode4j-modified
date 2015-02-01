@@ -21,20 +21,30 @@ package org.krysalis.barcode4j;
  * @author Jeremias Maerki
  * @version $Id$
  */
-public interface BarcodeConstants {
-
+public enum BarcodeConstants {
     /**
      * The namespace used when embedding barcode XML inside other XML dialects
      * such as XSL-FO.
      */
-    String NAMESPACE = "http://barcode4j.krysalis.org/ns";
-
+    NAMESPACE("http://barcode4j.krysalis.org/ns"),
     /**
-     * For compatibility: The Krysalis Barcode namespace valid before this project
-     * was renamed.
+     * For compatibility: The Krysalis Barcode namespace valid before this
+     * project was renamed.
      */
-    String OLD_NAMESPACE = "http://www.krysalis.org/barcode/ns";
-    
-    /** URL to the Barcode4J website */
-    String WEBSITE = "http://barcode4j.sourceforge.net";
+    OLD_NAMESPACE("http://www.krysalis.org/barcode/ns"),
+    /**
+     * URL to the Barcode4J website.
+     */
+    WEBSITE("http://barcode4j.sourceforge.net");
+
+    private final String text;
+
+    private BarcodeConstants(String text) {
+        this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return text;
+    }
 }
