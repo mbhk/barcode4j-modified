@@ -184,9 +184,11 @@ public class Length {
             if (valueWithUnit == null) {
                 throw new IllegalArgumentException("argument must not be null");
             }
+
             String tmp = valueWithUnit.trim();
-            this.unit = checkUnit(extractUnit(tmp));
+            String tmpUnit = checkUnit(extractUnit(tmp));
             this.value = parseValue(extractValue(tmp));
+            this.unit = tmpUnit;
             return this;
         }
 
