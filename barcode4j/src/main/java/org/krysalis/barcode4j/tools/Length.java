@@ -17,6 +17,8 @@ package org.krysalis.barcode4j.tools;
 
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +30,7 @@ import java.util.regex.Pattern;
  * @version $Id$
  */
 public class Length {
+    private static final Logger log = Logger.getLogger(Length.class.getName());
     
     /** String constant for inches. */
     public static final String INCH = "in";
@@ -61,6 +64,7 @@ public class Length {
         try {
             b.fromString(text);
         } catch (Exception e) {
+            log.log(Level.FINEST, "Length not buildable fromString.", e);
             b.reset().withValue(text).withUnit(defaultUnit);
         }
         Length l = b.build();
@@ -142,10 +146,7 @@ public class Length {
         if (Double.doubleToLongBits(this.value) != Double.doubleToLongBits(other.value)) {
             return false;
         }
-        if ((this.unit == null) ? (other.unit != null) : !this.unit.equals(other.unit)) {
-            return false;
-        }
-        return true;
+        return !((this.unit == null) ? (other.unit != null) : !this.unit.equals(other.unit));
     }
 
     @Override
