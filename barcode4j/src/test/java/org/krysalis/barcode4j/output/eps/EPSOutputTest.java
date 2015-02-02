@@ -17,11 +17,11 @@ package org.krysalis.barcode4j.output.eps;
 
 import java.io.ByteArrayOutputStream;
 
-import org.apache.avalon.framework.configuration.DefaultConfiguration;
 import org.krysalis.barcode4j.BarcodeGenerator;
 import org.krysalis.barcode4j.BarcodeUtil;
 
 import junit.framework.TestCase;
+import org.krysalis.barcode4j.impl.Configuration;
 
 /**
  * Test class for basic EPS output functionality.
@@ -36,8 +36,8 @@ public class EPSOutputTest extends TestCase {
     }
 
     public void testEPS() throws Exception {
-        DefaultConfiguration cfg = new DefaultConfiguration("cfg");
-        cfg.addChild(new DefaultConfiguration("intl2of5"));
+        Configuration cfg = new Configuration("cfg");
+        cfg.addChild(new Configuration("intl2of5"));
 
         BarcodeUtil util = BarcodeUtil.getInstance();
         BarcodeGenerator gen = util.createBarcodeGenerator(cfg);

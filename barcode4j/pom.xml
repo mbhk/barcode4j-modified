@@ -13,7 +13,7 @@
     <description>barcode4j core library</description>
     
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>avalon-framework</groupId>
             <artifactId>avalon-framework-api</artifactId>
             <optional>true</optional>
@@ -22,7 +22,7 @@
             <groupId>avalon-framework</groupId>
             <artifactId>avalon-framework-impl</artifactId>
             <optional>true</optional>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>

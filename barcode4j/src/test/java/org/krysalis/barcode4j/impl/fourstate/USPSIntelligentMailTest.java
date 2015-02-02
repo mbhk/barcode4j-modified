@@ -22,10 +22,9 @@ import java.math.BigInteger;
 import java.util.Arrays;
 
 import junit.framework.TestCase;
+import org.krysalis.barcode4j.impl.Configuration;
 
 import org.krysalis.barcode4j.impl.MockClassicBarcodeLogicHandler;
-
-import org.apache.avalon.framework.configuration.DefaultConfiguration;
 
 /**
  * Tests for the USPS Intelligent Mail Barcode (4-State Customer Barcode).
@@ -171,7 +170,7 @@ public class USPSIntelligentMailTest extends TestCase {
         USPSIntelligentMailBean refBean = new USPSIntelligentMailBean();
         
         USPSIntelligentMail gen = new USPSIntelligentMail();
-        DefaultConfiguration cfg = new DefaultConfiguration("usps4cb");
+        Configuration cfg = new Configuration("usps4cb");
         gen.configure(cfg);
         USPSIntelligentMailBean xmlBean = gen.getUSPSIntelligentMailBean();
         assertEquals(refBean.getAscenderHeight(), xmlBean.getAscenderHeight(), 0.01);

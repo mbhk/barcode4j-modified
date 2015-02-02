@@ -18,11 +18,9 @@ package org.krysalis.barcode4j.impl.int2of5;
 import org.krysalis.barcode4j.ChecksumMode;
 import org.krysalis.barcode4j.impl.AbstractBarcodeBean;
 import org.krysalis.barcode4j.impl.ConfigurableBarcodeGenerator;
+import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.impl.ConfigurationException;
 import org.krysalis.barcode4j.tools.Length;
-
-import org.apache.avalon.framework.configuration.Configurable;
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
 
 /**
  * This class is an implementation of the Interleaved 2 of 5 barcode.
@@ -30,8 +28,7 @@ import org.apache.avalon.framework.configuration.ConfigurationException;
  * @author Jeremias Maerki
  * @version $Id$
  */
-public class Interleaved2Of5 extends ConfigurableBarcodeGenerator
-            implements Configurable {
+public class Interleaved2Of5 extends ConfigurableBarcodeGenerator {
 
     /** Create a new instance. */
     public Interleaved2Of5() {
@@ -62,7 +59,7 @@ public class Interleaved2Of5 extends ConfigurableBarcodeGenerator
 
         //Wide factor
         bean.setWideFactor(
-            cfg.getChild("wide-factor").getValueAsFloat((float)bean.getWideFactor()));
+            cfg.getChild("wide-factor").getValueAsFloat(bean.getWideFactor()));
 
         Configuration hr = cfg.getChild("human-readable", false);
         if (hr != null) {

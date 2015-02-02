@@ -15,11 +15,10 @@
  */
 package org.krysalis.barcode4j.impl.upcean;
 
-import org.apache.avalon.framework.configuration.Configurable;
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
 import org.krysalis.barcode4j.ChecksumMode;
 import org.krysalis.barcode4j.impl.ConfigurableBarcodeGenerator;
+import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.impl.ConfigurationException;
 import org.krysalis.barcode4j.tools.Length;
 
 /**
@@ -28,8 +27,7 @@ import org.krysalis.barcode4j.tools.Length;
  * @author Jeremias Maerki
  * @version $Id$
  */
-public abstract class UPCEAN extends ConfigurableBarcodeGenerator 
-            implements Configurable {
+public abstract class UPCEAN extends ConfigurableBarcodeGenerator {
 
     /**
      * @see org.apache.avalon.framework.configuration.Configurable#configure(Configuration)

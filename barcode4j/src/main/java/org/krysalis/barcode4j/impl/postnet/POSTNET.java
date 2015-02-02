@@ -18,11 +18,9 @@ package org.krysalis.barcode4j.impl.postnet;
 import org.krysalis.barcode4j.BaselineAlignment;
 import org.krysalis.barcode4j.ChecksumMode;
 import org.krysalis.barcode4j.impl.ConfigurableBarcodeGenerator;
+import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.impl.ConfigurationException;
 import org.krysalis.barcode4j.tools.Length;
-
-import org.apache.avalon.framework.configuration.Configurable;
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
 
 /**
  * Implements the United States Postal Service POSTNET barcode.
@@ -30,8 +28,7 @@ import org.apache.avalon.framework.configuration.ConfigurationException;
  * @author Chris Dolphy
  * @version $Id$
  */
-public class POSTNET extends ConfigurableBarcodeGenerator 
-            implements Configurable {
+public class POSTNET extends ConfigurableBarcodeGenerator {
 
     /** Create a new instance. */
     public POSTNET() {

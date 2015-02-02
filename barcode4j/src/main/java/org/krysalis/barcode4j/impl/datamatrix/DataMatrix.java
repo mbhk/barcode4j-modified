@@ -18,19 +18,16 @@ package org.krysalis.barcode4j.impl.datamatrix;
 import java.awt.Dimension;
 
 import org.krysalis.barcode4j.impl.ConfigurableBarcodeGenerator;
+import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.impl.ConfigurationException;
 import org.krysalis.barcode4j.tools.Length;
-
-import org.apache.avalon.framework.configuration.Configurable;
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
 
 /**
  * This class is an implementation of the DataMatrix barcode.
  *
  * @version $Id$
  */
-public class DataMatrix extends ConfigurableBarcodeGenerator
-            implements Configurable {
+public class DataMatrix extends ConfigurableBarcodeGenerator {
 
     /** Create a new instance. */
     public DataMatrix() {

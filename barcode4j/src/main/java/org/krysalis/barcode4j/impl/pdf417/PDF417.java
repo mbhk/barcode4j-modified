@@ -16,19 +16,16 @@
 package org.krysalis.barcode4j.impl.pdf417;
 
 import org.krysalis.barcode4j.impl.ConfigurableBarcodeGenerator;
+import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.impl.ConfigurationException;
 import org.krysalis.barcode4j.tools.Length;
-
-import org.apache.avalon.framework.configuration.Configurable;
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
 
 /**
  * This class is an implementation of the PDF417 barcode.
  *
  * @version $Id$
  */
-public class PDF417 extends ConfigurableBarcodeGenerator
-            implements Configurable {
+public class PDF417 extends ConfigurableBarcodeGenerator {
 
     /** Create a new instance. */
     public PDF417() {

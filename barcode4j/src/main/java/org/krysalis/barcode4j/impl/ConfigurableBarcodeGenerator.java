@@ -24,10 +24,6 @@ import org.krysalis.barcode4j.HumanReadablePlacement;
 import org.krysalis.barcode4j.output.CanvasProvider;
 import org.krysalis.barcode4j.tools.Length;
 
-import org.apache.avalon.framework.configuration.Configurable;
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
-
 /**
  * Base class for most Avalon-Configurable barcode implementation proxies.
  *
@@ -91,7 +87,7 @@ public abstract class ConfigurableBarcodeGenerator
     /** Proxy target. Barcode bean to configure. */
     protected AbstractBarcodeBean bean;
 
-    /** {@inheritDoc} */
+    @Override
     public void configure(Configuration cfg) throws ConfigurationException {
         //Height (must be evaluated after the font size because of setHeight())
         Configuration c = cfg.getChild("height", false);

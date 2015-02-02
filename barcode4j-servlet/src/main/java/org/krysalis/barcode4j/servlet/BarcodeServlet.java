@@ -18,6 +18,8 @@ package org.krysalis.barcode4j.servlet;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,12 +38,9 @@ import org.krysalis.barcode4j.output.eps.EPSCanvasProvider;
 import org.krysalis.barcode4j.output.svg.SVGCanvasProvider;
 import org.krysalis.barcode4j.tools.MimeTypes;
 
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
-import org.apache.avalon.framework.configuration.DefaultConfiguration;
-import org.apache.avalon.framework.logger.ConsoleLogger;
-import org.apache.avalon.framework.logger.Logger;
 import org.krysalis.barcode4j.BarcodeException;
+import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.impl.ConfigurationException;
 
 /**
  * Simple barcode servlet.
@@ -80,7 +79,7 @@ public class BarcodeServlet extends HttpServlet {
     public static final String BARCODE_HUMAN_READABLE_PATTERN = "hrpattern";
 
 
-    private final transient Logger log = new ConsoleLogger(ConsoleLogger.LEVEL_INFO);
+    private final transient Logger log = Logger.getLogger(BarcodeServlet.class.getName());
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -151,19 +150,19 @@ public class BarcodeServlet extends HttpServlet {
             response.getOutputStream().write(bout.toByteArray());
             response.getOutputStream().flush();
         } catch (ConfigurationException e) {
-            log.error("Error while generating barcode", e);
+            log.log(Level.SEVERE, "Error while generating barcode", e);
             throw new ServletException(e);
         } catch (BarcodeException e) {
-            log.error("Error while generating barcode", e);
+            log.log(Level.SEVERE, "Error while generating barcode", e);
             throw new ServletException(e);
         } catch (TransformerException e) {
-            log.error("Error while generating barcode", e);
+            log.log(Level.SEVERE, "Error while generating barcode", e);
             throw new ServletException(e);
         } catch (IOException e) {
-            log.error("Error while generating barcode", e);
+            log.log(Level.SEVERE, "Error while generating barcode", e);
             throw new ServletException(e);
         } catch (IllegalArgumentException e) {
-            log.error("Error while generating barcode", e);
+            log.log(Level.SEVERE, "Error while generating barcode", e);
             throw new ServletException(e);
         }
     }
@@ -192,37 +191,37 @@ public class BarcodeServlet extends HttpServlet {
 
         // TODO Change to bean API
 
-        DefaultConfiguration cfg = new DefaultConfiguration("barcode");
+        Configuration cfg = new Configuration("barcode");
         //Get type
         String type = request.getParameter(BARCODE_TYPE);
         if (type == null) {
             type = "code128";
         }
-        DefaultConfiguration child = new DefaultConfiguration(type);
+        Configuration child = new Configuration(type);
         cfg.addChild(child);
         //Get additional attributes
-        DefaultConfiguration attr;
+        Configuration attr;
         String height = request.getParameter(BARCODE_HEIGHT);
         if (height != null) {
-            attr = new DefaultConfiguration("height");
+            attr = new Configuration("height");
             attr.setValue(height);
             child.addChild(attr);
         }
         String moduleWidth = request.getParameter(BARCODE_MODULE_WIDTH);
         if (moduleWidth != null) {
-            attr = new DefaultConfiguration("module-width");
+            attr = new Configuration("module-width");
             attr.setValue(moduleWidth);
             child.addChild(attr);
         }
         String wideFactor = request.getParameter(BARCODE_WIDE_FACTOR);
         if (wideFactor != null) {
-            attr = new DefaultConfiguration("wide-factor");
+            attr = new Configuration("wide-factor");
             attr.setValue(wideFactor);
             child.addChild(attr);
         }
         String quietZone = request.getParameter(BARCODE_QUIET_ZONE);
         if (quietZone != null) {
-            attr = new DefaultConfiguration("quiet-zone");
+            attr = new Configuration("quiet-zone");
             if (quietZone.startsWith("disable")) {
                 attr.setAttribute("enabled", "false");
             } else {
@@ -243,26 +242,26 @@ public class BarcodeServlet extends HttpServlet {
                 && (pattern == null)
                 && (humanReadableSize == null)
                 && (humanReadableFont == null))) {
-            attr = new DefaultConfiguration("human-readable");
+            attr = new Configuration("human-readable");
 
-            DefaultConfiguration subAttr;
+            Configuration subAttr;
             if (pattern != null) {
-                subAttr = new DefaultConfiguration("pattern");
+                subAttr = new Configuration("pattern");
                 subAttr.setValue(pattern);
                 attr.addChild(subAttr);
             }
             if (humanReadableSize != null) {
-                subAttr = new DefaultConfiguration("font-size");
+                subAttr = new Configuration("font-size");
                 subAttr.setValue(humanReadableSize);
                 attr.addChild(subAttr);
             }
             if (humanReadableFont != null) {
-                subAttr = new DefaultConfiguration("font-name");
+                subAttr = new Configuration("font-name");
                 subAttr.setValue(humanReadableFont);
                 attr.addChild(subAttr);
             }
             if (humanReadablePosition != null) {
-              subAttr = new DefaultConfiguration("placement");
+              subAttr = new Configuration("placement");
               subAttr.setValue(humanReadablePosition);
               attr.addChild(subAttr);
             }

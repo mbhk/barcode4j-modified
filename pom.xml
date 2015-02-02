@@ -175,18 +175,6 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>avalon-framework</groupId>
-                <artifactId>avalon-framework-api</artifactId>
-                <version>4.2.0</version>
-                <optional>true</optional>
-            </dependency>
-            <dependency>
-                <groupId>avalon-framework</groupId>
-                <artifactId>avalon-framework-impl</artifactId>
-                <version>4.2.0</version>
-                <optional>true</optional>
-            </dependency>
-            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>3.8.2</version>

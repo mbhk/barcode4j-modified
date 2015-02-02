@@ -34,12 +34,10 @@ import org.krysalis.barcode4j.output.eps.EPSCanvasProvider;
 import org.krysalis.barcode4j.output.svg.SVGCanvasProvider;
 import org.krysalis.barcode4j.tools.MimeTypes;
 
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
-import org.apache.avalon.framework.configuration.DefaultConfiguration;
-import org.apache.avalon.framework.configuration.DefaultConfigurationBuilder;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
+import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.impl.ConfigurationException;
 import org.xml.sax.SAXException;
 
 /**
@@ -146,8 +144,8 @@ public class BarcodeTask extends Task {
     private Configuration getConfiguration() {
         Configuration res = null;
         if (symbol != null) {
-            DefaultConfiguration cfg = new DefaultConfiguration("cfg");
-            cfg.addChild(new DefaultConfiguration(symbol));
+            Configuration cfg = new Configuration("cfg");
+            cfg.addChild(new Configuration(symbol));
             res = cfg;
         } else if (configurationFile != null) {
             try {
@@ -156,7 +154,7 @@ public class BarcodeTask extends Task {
                 }
                 log("Using configuration: " + configurationFile);
 
-                DefaultConfigurationBuilder builder = new DefaultConfigurationBuilder();
+                Configuration.Builder builder = new Configuration.Builder();
                 res = builder.buildFromFile(configurationFile);
             } catch (SAXException e) {
                 throw new BuildException("Error reading configuration file", e);
@@ -166,7 +164,7 @@ public class BarcodeTask extends Task {
                 throw new BuildException("Error reading configuration file", e);
             }
         }
-        return res == null ? new DefaultConfiguration("cfg") : res;
+        return res == null ? new Configuration("cfg") : res;
     }
 
     /**

@@ -22,8 +22,6 @@ import org.krysalis.barcode4j.impl.postnet.POSTNET;
 import org.krysalis.barcode4j.impl.postnet.POSTNETBean;
 import org.krysalis.barcode4j.impl.postnet.POSTNETLogicImpl;
 
-import org.apache.avalon.framework.configuration.DefaultConfiguration;
-
 /**
  * Test class for the POSTNET implementation.
  * 
@@ -137,7 +135,7 @@ public class POSTNETTest extends TestCase {
         POSTNETBean refBean = new POSTNETBean();
         
         POSTNET gen = new POSTNET();
-        DefaultConfiguration cfg = new DefaultConfiguration("postnet");
+        Configuration cfg = new Configuration("postnet");
         gen.configure(cfg);
         POSTNETBean xmlBean = gen.getPOSTNETBean();
         assertEquals(refBean.getBarHeight(), xmlBean.getBarHeight(), 0.01);

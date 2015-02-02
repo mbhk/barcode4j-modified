@@ -21,19 +21,16 @@ package org.krysalis.barcode4j.impl.qr;
 import java.awt.Dimension;
 
 import org.krysalis.barcode4j.impl.ConfigurableBarcodeGenerator;
+import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.impl.ConfigurationException;
 import org.krysalis.barcode4j.tools.Length;
-
-import org.apache.avalon.framework.configuration.Configurable;
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
 
 /**
  * This class is an implementation of QR Code.
  *
  * @version $Id$
  */
-public class QRCode extends ConfigurableBarcodeGenerator
-            implements Configurable {
+public class QRCode extends ConfigurableBarcodeGenerator {
 
     /** Create a new instance. */
     public QRCode() {

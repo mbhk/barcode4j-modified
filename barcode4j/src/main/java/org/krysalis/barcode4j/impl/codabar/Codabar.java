@@ -17,11 +17,9 @@ package org.krysalis.barcode4j.impl.codabar;
 
 import org.krysalis.barcode4j.ChecksumMode;
 import org.krysalis.barcode4j.impl.ConfigurableBarcodeGenerator;
+import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.impl.ConfigurationException;
 import org.krysalis.barcode4j.tools.Length;
-
-import org.apache.avalon.framework.configuration.Configurable;
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
 
 /**
  * This class is an implementation of the Codabar barcode.
@@ -29,15 +27,14 @@ import org.apache.avalon.framework.configuration.ConfigurationException;
  * @author Jeremias Maerki
  * @version $Id$
  */
-public class Codabar extends ConfigurableBarcodeGenerator
-            implements Configurable {
+public class Codabar extends ConfigurableBarcodeGenerator {
 
     /** Create a new instance. */
     public Codabar() {
         this.bean = new CodabarBean();
     }
 
-    /** {@inheritDoc} */
+    @Override
     public void configure(Configuration cfg) throws ConfigurationException {
         //Module width (MUST ALWAYS BE FIRST BECAUSE QUIET ZONE MAY DEPEND ON IT)
         Length mw = new Length(cfg.getChild("module-width").getValue("0.21mm"), "mm");

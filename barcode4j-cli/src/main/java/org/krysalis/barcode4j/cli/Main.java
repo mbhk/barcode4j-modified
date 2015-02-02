@@ -23,6 +23,8 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
@@ -38,12 +40,8 @@ import org.krysalis.barcode4j.output.bitmap.BitmapEncoderRegistry;
 import org.krysalis.barcode4j.output.eps.EPSCanvasProvider;
 import org.krysalis.barcode4j.output.svg.SVGCanvasProvider;
 import org.krysalis.barcode4j.tools.MimeTypes;
+import org.krysalis.barcode4j.impl.ConfigurationException;
 
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
-import org.apache.avalon.framework.configuration.DefaultConfiguration;
-import org.apache.avalon.framework.configuration.DefaultConfigurationBuilder;
-import org.apache.avalon.framework.logger.Logger;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -54,6 +52,7 @@ import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
+import org.krysalis.barcode4j.impl.Configuration;
 
 /**
  * Command-line interface.
@@ -72,10 +71,10 @@ public class Main {
     /** stderr for this application (default: System.err) */
     public static PrintStream stderr = System.err;
 
-    private static ExitHandler exitHandler = new DefaultExitHandler();
+    private static DefaultExitHandler exitHandler = new DefaultExitHandler();
     private Options options;
     private boolean headerPrinted = false;
-    private Logger log;
+    private static final Logger LOG = Logger.getLogger(Main.class.getName());
 
     /**
      * Main method.
@@ -84,14 +83,6 @@ public class Main {
     public static void main(String[] args) {
         Main app = new Main();
         app.handleCommandLine(args);
-    }
-
-    /**
-     * Set an alternative exit handler here.
-     * @param handler the alternative exit handler
-     */
-    public static void setExitHandler(ExitHandler handler) {
-        exitHandler = handler;
     }
 
     /**
@@ -129,31 +120,27 @@ public class Main {
         try {
             OutputStream out;
             if (!cl.hasOption("o")) {
-                log = new AdvancedConsoleLogger(AdvancedConsoleLogger.LEVEL_ERROR,
-                    false, stderr, stderr);
                 printAppHeader();
                 out = stdout;
             } else {
-                int logLevel = AdvancedConsoleLogger.LEVEL_INFO;
+                Level logLevel = Level.INFO;
                 if (cl.hasOption('v')) {
-                    logLevel = AdvancedConsoleLogger.LEVEL_DEBUG;
+                    logLevel = Level.ALL;
                 }
-                log = new AdvancedConsoleLogger(logLevel, false, stdout, stderr);
+                LOG.setLevel(logLevel);
                 printAppHeader();
                 File outFile = new File(cl.getOptionValue("o"));
-                if (log.isDebugEnabled()) {
-                    log.debug("Output to: " + outFile.getCanonicalPath());
-                }
+                LOG.log(Level.ALL, "Output to: {0}", outFile.getCanonicalPath());
                 out = new java.io.FileOutputStream(outFile);
             }
 
-            log.debug("Message: " + msg[0]);
+            LOG.log(Level.ALL, "Message: {0}", msg[0]);
 
             //Output format
             String format = MimeTypes.expandFormat(
                     cl.getOptionValue("f", MimeTypes.MIME_SVG));
             int orientation = 0;
-            log.info("Generating " + format + "...");
+            LOG.log(Level.INFO, "Generating {0}...", format);
             BarcodeUtil util = BarcodeUtil.getInstance();
             BarcodeGenerator gen = util.createBarcodeGenerator(
                     getConfiguration(cl));
@@ -180,14 +167,14 @@ public class Main {
                 eps.finish();
             } else {
                 int dpi = Integer.parseInt(cl.getOptionValue('d', "300"));
-                log.debug("Resolution: " + dpi + "dpi");
+                LOG.log(Level.ALL, "Resolution: {0}dpi", dpi);
                 BitmapCanvasProvider bitmap;
                 if (cl.hasOption("bw")) {
-                    log.debug("Black/white image (1-bit)");
+                    LOG.log(Level.ALL, "Black/white image (1-bit)");
                     bitmap = new BitmapCanvasProvider(out,
                         format, dpi, BufferedImage.TYPE_BYTE_BINARY, false, orientation);
                 } else {
-                    log.debug("Grayscale image (8-bit) with anti-aliasing");
+                    LOG.log(Level.ALL, "Grayscale image (8-bit) with anti-aliasing");
                     bitmap = new BitmapCanvasProvider(out,
                         format, dpi, BufferedImage.TYPE_BYTE_GRAY, true, orientation);
                 }
@@ -196,7 +183,7 @@ public class Main {
             }
 
             out.close();
-            log.info("done.");
+            LOG.info("done.");
             exitHandler.successfulExit(this);
         } catch (IOException ioe) {
             exitHandler.failureExit(this,
@@ -276,8 +263,8 @@ public class Main {
     private Configuration getConfiguration(CommandLine cl) {
         if (cl.hasOption("s")) {
             String sym = cl.getOptionValue("s");
-            DefaultConfiguration cfg = new DefaultConfiguration("cfg");
-            DefaultConfiguration child = new DefaultConfiguration(sym);
+            Configuration cfg = new Configuration("cfg");
+            Configuration child = new Configuration(sym);
             cfg.addChild(child);
             return cfg;
         }
@@ -289,16 +276,16 @@ public class Main {
                     throw new FileNotFoundException(
                         "Config file not found: " + cfgFile);
                 }
-                log.info("Using configuration: " + cfgFile);
+                LOG.info("Using configuration: " + cfgFile);
 
-                DefaultConfigurationBuilder builder = new DefaultConfigurationBuilder();
+                Configuration.Builder builder = new Configuration.Builder();
                 return builder.buildFromFile(cfgFile);
             } catch (Exception e) {
                 exitHandler.failureExit(this,
                     "Error reading configuration file: " + e.getMessage(), null, -3);
             }
         }
-        return new DefaultConfiguration("cfg");
+        return new Configuration("cfg");
     }
 
     /** @return the Barcode4J version */
@@ -321,9 +308,9 @@ public class Main {
      */
     public void printAppHeader() {
         if (!headerPrinted) {
-            if (log != null) {
+            if (LOG != null) {
                 for (int i = 0; i < APP_HEADER.length; i++) {
-                    log.info(APP_HEADER[i]);
+                    LOG.info(APP_HEADER[i]);
                 }
             } else {
                 for (int i = 0; i < APP_HEADER.length; i++) {

@@ -15,9 +15,9 @@
  */
 package org.krysalis.barcode4j;
 
-import org.apache.avalon.framework.configuration.Configuration;
-import org.apache.avalon.framework.configuration.ConfigurationException;
-import org.apache.avalon.framework.container.ContainerUtil;
+import org.krysalis.barcode4j.impl.Configurable;
+import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.impl.ConfigurationException;
 
 /**
  * This is a convenience class to generate barcodes. It is implemented as
@@ -111,16 +111,8 @@ public class BarcodeUtil {
 
             //Instantiate the BarcodeGenerator
             BarcodeGenerator gen = (BarcodeGenerator)cl.newInstance();
-            try {
-                ContainerUtil.configure(gen, (child != null ? child : cfg));
-            } catch (IllegalArgumentException iae) {
-                throw new ConfigurationException("Cannot configure barcode generator", iae);
-            }
-            try {
-                ContainerUtil.initialize(gen);
-            } catch (Exception e) {
-                throw new RuntimeException("Cannot initialize barcode generator. "
-                        + e.getMessage());
+            if (Configurable.class.isAssignableFrom(cl)) {
+                ((Configurable)gen).configure((child != null ? child : cfg));
             }
             return gen;
         } catch (IllegalAccessException ia) {
