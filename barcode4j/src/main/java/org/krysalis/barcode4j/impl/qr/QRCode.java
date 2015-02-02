@@ -21,8 +21,8 @@ package org.krysalis.barcode4j.impl.qr;
 import java.awt.Dimension;
 
 import org.krysalis.barcode4j.impl.ConfigurableBarcodeGenerator;
-import org.krysalis.barcode4j.impl.Configuration;
-import org.krysalis.barcode4j.impl.ConfigurationException;
+import org.krysalis.barcode4j.configuration.Configuration;
+import org.krysalis.barcode4j.configuration.ConfigurationException;
 import org.krysalis.barcode4j.tools.Length;
 
 /**

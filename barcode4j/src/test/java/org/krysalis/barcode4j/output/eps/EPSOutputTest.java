@@ -21,7 +21,7 @@ import org.krysalis.barcode4j.BarcodeGenerator;
 import org.krysalis.barcode4j.BarcodeUtil;
 
 import junit.framework.TestCase;
-import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.configuration.Configuration;
 
 /**
  * Test class for basic EPS output functionality.

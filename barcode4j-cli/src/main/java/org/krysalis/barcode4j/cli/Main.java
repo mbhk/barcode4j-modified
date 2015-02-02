@@ -40,7 +40,8 @@ import org.krysalis.barcode4j.output.bitmap.BitmapEncoderRegistry;
 import org.krysalis.barcode4j.output.eps.EPSCanvasProvider;
 import org.krysalis.barcode4j.output.svg.SVGCanvasProvider;
 import org.krysalis.barcode4j.tools.MimeTypes;
-import org.krysalis.barcode4j.impl.ConfigurationException;
+import org.krysalis.barcode4j.configuration.Configuration;
+import org.krysalis.barcode4j.configuration.ConfigurationException;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -52,7 +53,6 @@ import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
-import org.krysalis.barcode4j.impl.Configuration;
 
 /**
  * Command-line interface.

@@ -39,8 +39,8 @@ import org.krysalis.barcode4j.output.svg.SVGCanvasProvider;
 import org.krysalis.barcode4j.tools.MimeTypes;
 
 import org.krysalis.barcode4j.BarcodeException;
-import org.krysalis.barcode4j.impl.Configuration;
-import org.krysalis.barcode4j.impl.ConfigurationException;
+import org.krysalis.barcode4j.configuration.Configuration;
+import org.krysalis.barcode4j.configuration.ConfigurationException;
 
 /**
  * Simple barcode servlet.

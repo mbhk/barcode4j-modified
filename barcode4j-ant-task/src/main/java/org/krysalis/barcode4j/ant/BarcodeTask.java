@@ -33,11 +33,11 @@ import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 import org.krysalis.barcode4j.output.eps.EPSCanvasProvider;
 import org.krysalis.barcode4j.output.svg.SVGCanvasProvider;
 import org.krysalis.barcode4j.tools.MimeTypes;
+import org.krysalis.barcode4j.configuration.Configuration;
+import org.krysalis.barcode4j.configuration.ConfigurationException;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
-import org.krysalis.barcode4j.impl.Configuration;
-import org.krysalis.barcode4j.impl.ConfigurationException;
 import org.xml.sax.SAXException;
 
 /**

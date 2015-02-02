@@ -15,8 +15,8 @@
  */
 package org.krysalis.barcode4j.tools;
 
-import org.krysalis.barcode4j.impl.Configuration;
-import org.krysalis.barcode4j.impl.ConfigurationException;
+import org.krysalis.barcode4j.configuration.Configuration;
+import org.krysalis.barcode4j.configuration.ConfigurationException;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentFragment;

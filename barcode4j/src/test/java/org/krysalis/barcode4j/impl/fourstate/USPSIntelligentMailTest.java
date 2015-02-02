@@ -22,7 +22,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 
 import junit.framework.TestCase;
-import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.configuration.Configuration;
 
 import org.krysalis.barcode4j.impl.MockClassicBarcodeLogicHandler;
 

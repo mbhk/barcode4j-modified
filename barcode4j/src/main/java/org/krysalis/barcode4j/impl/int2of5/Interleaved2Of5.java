@@ -18,8 +18,8 @@ package org.krysalis.barcode4j.impl.int2of5;
 import org.krysalis.barcode4j.ChecksumMode;
 import org.krysalis.barcode4j.impl.AbstractBarcodeBean;
 import org.krysalis.barcode4j.impl.ConfigurableBarcodeGenerator;
-import org.krysalis.barcode4j.impl.Configuration;
-import org.krysalis.barcode4j.impl.ConfigurationException;
+import org.krysalis.barcode4j.configuration.Configuration;
+import org.krysalis.barcode4j.configuration.ConfigurationException;
 import org.krysalis.barcode4j.tools.Length;
 
 /**

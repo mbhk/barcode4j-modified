@@ -22,7 +22,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import junit.framework.TestCase;
-import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.configuration.Configuration;
 
 /**
  * Test case for ConfigurationUtil.

@@ -15,9 +15,9 @@
  */
 package org.krysalis.barcode4j;
 
-import org.krysalis.barcode4j.impl.Configurable;
-import org.krysalis.barcode4j.impl.Configuration;
-import org.krysalis.barcode4j.impl.ConfigurationException;
+import org.krysalis.barcode4j.configuration.Configurable;
+import org.krysalis.barcode4j.configuration.Configuration;
+import org.krysalis.barcode4j.configuration.ConfigurationException;
 
 /**
  * This is a convenience class to generate barcodes. It is implemented as

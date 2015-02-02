@@ -18,8 +18,8 @@ package org.krysalis.barcode4j.impl.postnet;
 import org.krysalis.barcode4j.BaselineAlignment;
 import org.krysalis.barcode4j.ChecksumMode;
 import org.krysalis.barcode4j.impl.ConfigurableBarcodeGenerator;
-import org.krysalis.barcode4j.impl.Configuration;
-import org.krysalis.barcode4j.impl.ConfigurationException;
+import org.krysalis.barcode4j.configuration.Configuration;
+import org.krysalis.barcode4j.configuration.ConfigurationException;
 import org.krysalis.barcode4j.tools.Length;
 
 /**

@@ -20,7 +20,7 @@ import org.krysalis.barcode4j.BarcodeUtil;
 import org.w3c.dom.DocumentFragment;
 
 import junit.framework.TestCase;
-import org.krysalis.barcode4j.impl.Configuration;
+import org.krysalis.barcode4j.configuration.Configuration;
 
 /**
  * Test class for SVG output to JDOM.
